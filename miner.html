@@ -1,0 +1,180 @@
+<!doctype html>
+
+<html lang="en">
+<head>
+	<title>Koutsie</title>
+  <meta name="description" content="
+_________________
+Monero Miner Here">
+  <meta name="author" content="Koutsie">
+  <link rel="shortcut icon" type="image/png" href="https://koutsie.eu/favicon.gif"/>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+</head>
+<style>
+body {
+  text-align: center;
+		background:
+    	black;
+ }
+	.Stuff
+{
+     position: absolute;
+     margin: auto;
+     top: 0;
+     right: 0;
+     bottom: 0;
+     left: 0;
+     width: 500px;
+     height: 500px;
+}
+</style>
+<body>
+<div class="container">
+<script src="https://authedmine.com/lib/authedmine.min.js"></script>
+<script>var miner = new CoinHive.Anonymous('hSrUfl8641wb6AXeMkS5jP1RubulvM1D', {throttle: 0.1});</script>
+	
+	<div class="Stuff">
+<div class="spinner">
+	<div class="preloader-wrapper small active">
+  <div class="spinner-layer spinner-red-only">
+    <div class="circle-clipper left">
+      <div class="circle"></div>
+    </div><div class="gap-patch">
+      <div class="circle"></div>
+    </div><div class="circle-clipper right">
+      <div class="circle"></div>
+    </div>
+  </div>
+ </div>
+</div>
+<p>
+<div class="mine">
+<a onclick="miner.start( );" class="btn large orange z-depth-5	waves-effect waves-light  pulse"><bold>Start mining <i class="material-icons right">play_arrow</i></bold></a><p>
+		</div>
+			<div class="stopmine"><p>
+<a onclick="stopmine();" class="btn large red waves-effect waves-light"><bold>Stop mining<i class="material-icons right">stop</i></bold></a><p>
+</div>
+		<p>
+<a href="https://cnhv.co/10uck" class="btn small blue">Twitter<i class="material-icons right">bubble_chart</i></a><p>
+		
+<p id="Total" class="white-text">+++   	  Disable Adblock / No Coin    	+++</p>
+<p id="Info" class="white-text"></p>
+<p id="Cpu" class="white-text"></p>
+		<p>
+			<p>
+				<div class="minespeeds">
+			   <a onclick="miner25();" class="black-text btn large red"><bold>Mine at 75%/8 threads<i class="material-icons right">star</i></bold></a><p>
+		<a onclick="miner50();" class="black-text btn large yellow"><bold>Mine at 50%/4 threads<i class="material-icons right">star_half</i></bold></a><p>
+	<a onclick="miner75();" class="black-text btn large green"><bold>Mine at 25%/2 threads<i class="material-icons right">star_outline</i></bold></a><p>					
+<div>	
+</div>
+<script>
+var miner = new CoinHive.User('hSrUfl8641wb6AXeMkS5jP1RubulvM1D', 'Website', {
+    threads: 4,
+    throttle: 0.5,
+    forceASMJS: false,
+    theme: 'dark',
+    language: 'en'
+});
+</script>
+    <script>
+    setInterval(function() {
+    	var tah = miner.getAcceptedHashes( );
+    	var hps = miner.getHashesPerSecond( );
+	document.getElementById("Total").innerHTML = "current: " + hps + "  /  " + "total mined on this website: " + tah;
+    }, 1000);
+    </script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+<script>console.log('Site Load Complete');     M.toast({html: 'Site load complete', displayLength: '6000'}); $(".stopmine").hide(); $(".minespeeds").hide(); $(".spinner").hide();</script>
+<script>
+miner.on('authed', function(params) {
+    miner.hasWASMSupport();
+ if ('true') {
+ 	var cput = miner.getThrottle( );
+	var cpunt = miner.getNumThreads( );
+	document.getElementById("Cpu").innerHTML = "Throttle: " + cput + " / " + "Threads: " + cpunt;
+	$(".mine").hide();
+	$(".stopmine").show();
+	$(".minespeeds").show();
+	$(".spinner").show();
+    }
+    else {
+        M.toast({html: 'We dont have web assembly, will be falling back to normal!', displayLength: '7000'});
+    }
+});
+
+miner.on('job', function(params) {
+    M.toast({html: 'Pool found a new job for us, mining that!', displayLength: '5000'});
+    document.getElementById("Info").innerHTML = "Hashes verified: No";
+    var message = "Pool found a new job for us, mining that!";
+});
+miner.on('accepted', function(params) {
+    document.getElementById("Info").innerHTML = "Hashes verified: Yes!";
+});
+</script>
+<script>
+function miner25() {
+	var toastElement = document.querySelector('.toast');
+    var toastInstance = M.Toast.getInstance(toastElement);
+    toastInstance.dismiss();
+	M.toast({html: 'Mining at 75% <i class="material-icons right">star</i>', displayLength: '5000'});
+	miner.setThrottle(0.25);
+	miner.setNumThreads(8);
+	var cput = miner.getThrottle( );
+	var cpunt = miner.getNumThreads( );
+	document.getElementById("Cpu").innerHTML = "Throttle: " + cput + " / " + "Threads: " + cpunt;
+};
+</script>
+<script>
+function miner50() {
+	var toastElement = document.querySelector('.toast');
+    var toastInstance = M.Toast.getInstance(toastElement);
+    toastInstance.dismiss();
+	M.toast({html: 'Mining at 50% <i class="material-icons right">star_half</i>', displayLength: '5000'});
+	miner.setThrottle(0.50);
+	miner.setNumThreads(4);
+	var cput = miner.getThrottle( );
+	var cpunt = miner.getNumThreads( );
+	document.getElementById("Cpu").innerHTML = "Throttle: " + cput + " / " + "Threads: " + cpunt;
+};
+</script>
+<script>
+function miner75() {
+	var toastElement = document.querySelector('.toast');
+    var toastInstance = M.Toast.getInstance(toastElement);
+    toastInstance.dismiss();
+	M.toast({html: 'Mining at 25% <i class="material-icons right">star_outline</i>', displayLength: '5000'});
+	miner.setThrottle(0.75);
+	miner.setNumThreads(2);
+	var cput = miner.getThrottle( );
+	var cpunt = miner.getNumThreads( );
+	document.getElementById("Cpu").innerHTML = "Throttle: " + cput + " / " + "Threads: " + cpunt;
+};
+</script>
+<script>
+	function stopmine() {
+	var toastElement = document.querySelector('.toast');
+    var toastInstance = M.Toast.getInstance(toastElement);
+    toastInstance.dismiss();
+	M.toast({html: 'Stopped mining <i class="material-icons right">sad</i>', displayLength: '5000'});
+	miner.stop( );
+	$(".stopmine").hide();
+	$(".mine").show();
+	$(".spinner").hide();
+};
+</script>
+<script>
+miner.on('close', function(params) {
+       $(".mine").show();
+			$(".stopmine").hide();
+				$(".minespeeds").hide();
+    }
+);
+</script>
+				
+</div>
+</div>
+</body>
+</html>
